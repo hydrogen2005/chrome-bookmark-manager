@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>书签整理助手</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside>
+    <div class="brand"><span class="logo">▥</span><div>书签整理助手<small>BOOKMARK ORGANIZER</small></div></div>
+    <div class="side-heading">收藏夹目录 <button id="refresh" title="刷新目录">↻</button></div>
+    <nav id="tree" aria-label="收藏夹目录树"></nav>
+    <p class="side-note">拖动右侧书签到目录，即可完成归档。<br>修改会同步到 Chrome 收藏夹。</p>
+  </aside>
+  <main>
+    <header><div><div id="breadcrumb" class="muted"></div><h1 id="folderTitle">正在读取收藏夹…</h1></div><div class="actions"><button id="newFolder">＋ 新建目录</button><button id="renameFolder">重命名</button><button id="deleteFolder" class="danger">删除目录</button></div></header>
+    <section class="scan-panel"><div><h2>给收藏夹做一次检查</h2><p>检测选中目录中的链接，再由你决定清理哪些书签。</p></div><div class="actions"><label><input type="checkbox" id="recursive" checked> 包含子目录</label><button id="scan" class="primary">开始检测</button><button id="stop" hidden>停止</button></div><div class="scan-progress"><progress id="progress" value="0" max="1"></progress><span id="scanStatus" role="status">尚未开始检测 · 单个链接最长等待 12 秒</span></div></section>
+    <div class="toolbar"><input id="search" type="search" placeholder="搜索当前范围的标题或网址" aria-label="搜索书签"><select id="filter" aria-label="检测结果筛选"><option value="all">全部状态</option><option value="ok">可访问</option><option value="broken">失效（404 / 410）</option><option value="uncertain">待确认</option><option value="skipped">不支持检测</option><option value="unchecked">未检测</option></select><span id="count" class="muted"></span></div>
+    <div class="selection-bar"><label><input type="checkbox" id="selectAll"> 全选当前列表</label><button id="selectBroken">选择失效链接</button><button id="moveSelected">移动所选</button><button id="deleteSelected" class="danger">删除所选</button><span id="selectedCount" class="muted"></span></div>
+    <section class="list"><div class="list-heading"><span>书签 / 网址</span><span>检测状态</span><span>操作</span></div><div id="bookmarks"></div></section>
+    <p class="footnote">仅 404 / 410 标记为失效。网络错误、超时、登录限制及服务器错误均需人工确认。检测期间请保持本页打开。</p>
+  </main>
+  <div id="toast" role="status" hidden></div>
+  <dialog id="dialog"><form id="dialogForm"><h2 id="dialogTitle"></h2><p id="dialogText"></p><label id="nameLabel">目录名称<input id="folderName" maxlength="200" autocomplete="off"></label><label id="targetLabel">目标目录<select id="targetFolder"></select></label><div class="dialog-actions"><button type="button" id="cancelDialog">取消</button><button type="submit" id="confirmDialog" class="primary">确认</button></div></form></dialog>
+  <script type="module" src="manager.js"></script>
+</body>
+</html>

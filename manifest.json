@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "书签整理助手",
+  "version": "1.0.0",
+  "description": "目录树管理书签，拖拽归档、链接检测与失效书签清理。",
+  "minimum_chrome_version": "114",
+  "permissions": ["bookmarks"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "action": { "default_title": "打开书签整理助手" },
+  "background": { "service_worker": "background.js" },
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'none'" }
+}
